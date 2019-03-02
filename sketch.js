@@ -7,7 +7,7 @@ function preload() {
     var imga = new Image();
     imga.onload = function() {
             imgsize = this.width;
-        }
+        };
     imga.src = 'http://localhost:8000/50x50.png';
     img = loadImage('http://localhost:8000/50x50.png');
 }
@@ -19,8 +19,8 @@ function setup() {
             grid.push(get(i, j));
         }
     }
-    cellsize = (Math.floor(windowHeight * .5) * 1 / imgsize);
-    createCanvas(Math.floor(windowHeight * .5), Math.floor(windowHeight * .5));
+    cellsize = (Math.floor(windowHeight * 0.5) * 1 / imgsize);
+    createCanvas(Math.floor(windowHeight * 0.5), Math.floor(windowHeight * 0.5));
     var c = 0;
     for (var i = 0; i < imgsize; i++) {
         for (var j = 0; j < imgsize; j++) {
@@ -39,7 +39,7 @@ function setup() {
         }
         if (_.isEqual(grid[cells[i].c], [0, 255, 0, 255])) {
             console.log("Start Cell Found");
-            travelers.push(new traveler(cells[i].x, cells[i].y, cells[i].x, cells[i].y, cells[i], null))
+            travelers.push(new traveler(cells[i].x, cells[i].y, cells[i].x, cells[i].y, cells[i], null));
         }
         cells[i].findneighbors();
     }
@@ -65,10 +65,10 @@ function traveler(sx, sy, x, y, cid, past) {
     this.show = function() {
         if (this.used == false) {
             fill("blue");
-            ellipse(this.x * cellsize + cellsize / 2, this.y * cellsize + cellsize / 2, cellsize * .2);
+            ellipse(this.x * cellsize + cellsize / 2, this.y * cellsize + cellsize / 2, cellsize * 0.2);
             this.findnext();
         }
-    }
+    };
     this.findnext = function() {
         this.used = true;
         var any = false;
@@ -135,7 +135,7 @@ function traveler(sx, sy, x, y, cid, past) {
         if (any == false) {
             this.cell.traveled = true;
         }
-    }
+    };
 }
 function cell(x, y, c) {
     this.x = x;
@@ -156,7 +156,7 @@ function cell(x, y, c) {
         }
         noStroke();
         rect(cellsize * x, cellsize * y, cellsize, cellsize);
-    }
+    };
     this.findneighbors = function() {
         for (var i = 0; i < cells.length; i++) {
             if (cells[i].x == this.x + 1 && cells[i].y == this.y) {
@@ -169,5 +169,5 @@ function cell(x, y, c) {
                 this.up = cells[i];
             }
         }
-    }
+    };
 }
